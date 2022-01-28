@@ -1,0 +1,25 @@
+ public static String fakeReview(String fileName)
+ {
+   String review = textToString(fileName);
+   String finalString;
+
+   while (review.indexOf("*") != -1)
+   {
+     int asteriskIndex = review.indexOf("*");
+     int nextSpace = review.indexOf(" ", asteriskIndex);
+     String randomString;
+     String asteriskWord = review.substring(asteriskIndex + 1, nextSpace);
+     if (sentimentVal(asteriskWord) < 0)
+     {
+      randomString = randomNegativeAdj();
+     }
+     else
+     {
+      randomString = randomPositiveAdj();
+     }
+     System.out.println(randomString);
+     review = review.replace(asteriskWord, randomString);
+     review = review.replace("*", "");
+    }
+   return review;  
+  }
